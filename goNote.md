@@ -64,10 +64,11 @@
    > 	bm_horse := Animal{}表示返回一个数据结构给bm_horse，bm_horse指向这个数据结构，也可以说bm_horse是这个数据结构的引用。
    	除此，还有另一种赋值方式，比较下两种赋值方式：
 
-   	```go
-   	1.bm_horse := Animal{"baima","neigh"}
-   	2.ref_bm_horse := &Animal{"baima","neigh"}
-   	```
+  ```go
+  bm_horse := Animal{"baima","neigh"}
+  ref_bm_horse := &Animal{"baima","neigh"}
+  ```
+
    > 	这两种赋值方式，有何不同？:=操作符都声明左边的变量，并赋值变量。赋值的内容基本神似：
    >
    > 	第一种将整个数据结构赋值给变量bm_horse，bm_horse从此变成Animal的实例；
@@ -79,8 +80,8 @@
    > 	实际上，赋值给bm_horse的是Animal实例的地址，赋值给ref_bm_horse是一个中间的指针，这个指针里保存了Animal实例的地址。它们的关系相当于：
 
    ```go
-    	1.bm_horse -> Animal{}
-   	2.ref_bm_horse -> Pointer -> Animal{}
+    	bm_horse -> Animal{}
+   		ref_bm_horse -> Pointer -> Animal{}
    ```
    >	**其中Pointer在内存中占用一个长度为一个机器字长的单独数据块，64位机器上一个机器字长是8字节**，所以赋值给ref_bm_horse的这个8字节长度的指针地址，这个指针地址再指向Animal{}，而bm_horse则是直接指向Animal{}。
 
@@ -146,3 +147,33 @@
    不同scope的变量名可以冲突，但建议采取名称唯一的方式为变量命名。
 
 22. Integer类型当存储的是以单引号包围的字符时，它会将字符转换成它二进制值对应的数值。同样适用于unicode字符，它将用来存放各字节对应的二进制的数值。 
+
+23. 为结构体`struct`绑定方法的操作：`func (r ReceiverType) funcName(parameters) (results)`
+
+   > ReceiverType 方法的接收者，一般为结构体的名称，r 为别名
+   >
+   > funcName 方法名称
+   >
+   > Parameters 方法的参数，可选
+   >
+   > results 方法返回值的数据类型，可选
+
+   例：
+
+   ```go
+   // 定义一个结构体
+   type Rectangle struct {
+   	width, height float64
+   }
+   
+   // 定义一个方法，并绑定到 Rectangle 结构体上
+   func (r Rectangle) area() float64 {
+   	return r.width*r.height
+   }
+   
+   // 使用
+   r1 = Rectangle{100,200}
+   var res int = r1.area()
+   ```
+
+24. 
