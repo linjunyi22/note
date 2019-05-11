@@ -120,11 +120,20 @@
 
 
 
+## Axios
+
+1. axios 默认不携带 cookie，前端使用时需设置 axios 的 withCredentials 为 true，后端也需设置接收 cookie。如 flask_cors 的 CORS(app,supports_credentials=True)
+
+
+
 ## Vuex
 
 1. 一般在 store.js 上统一管理组件的状态，用于在各组件之间共享同一数据。
 
-2. state 记录数据值，mutations 用于提交改变 state 中的值，mutations 是唯一改变 state 中的值的途径。
+2. * state 记录数据状态。
+   * mutations 用于提交改变 state 中的值，mutations 是唯一改变 state 中的值的途径。mutations 的所有操作均为同步操作。
+   * actions 用于提交 commit 触发 mutations，且actions 支持异步操作。
+   * getters 用于在获取 state 的值之前可进行一定的额外操作。
 
    ```javascript
    state:{
@@ -138,6 +147,16 @@
      },
      fn2(state, params){
    		// dosomething
+     }
+   },
+   actions:{
+     fn3({ commit }){
+       commit('fn1')
+     }
+   },
+   getters:{
+     arg4(state){
+       return state.arg1
      }
    }
    ```
