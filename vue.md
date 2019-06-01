@@ -162,3 +162,12 @@
    ```
 
 3. 在组件中通过`this.$store.commit('mutations 中定义的方法名')`来调用 mutations 中的方法，前提是 vuex 的已经被绑定在全局vue 实例上，以便可用 this.$store 的方式来调用。
+
+
+
+## 部署
+
+1. npm run build ，生成的 dist 文件夹部署至 nginx 中
+2. 解决刷新 404 问题
+   * 在 router 路由配置中配置一个path = '*'的路由，用于匹配 404 页面
+   * 在 nginx 的 location 配置中加入 `try_files $uri $uri/ /index.html last ` 即可
