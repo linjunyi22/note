@@ -120,6 +120,16 @@
 
 
 
+### NPM
+
+1. package.json 文件里面的 devDependencies 和 dependencies 的区别:
+   * devDependencies 里面的插件只用于开发环境，不用于生产环境，
+   * dependencies 是需要发布到生产环境的
+2. 使用 --save-dev 安装的 插件，被写入到 devDependencies对象里面去
+3. 使用 --save 安装的插件，则是被写入到 dependencies对象里面去。
+
+
+
 ## Axios
 
 1. axios 默认不携带 cookie，前端使用时需设置 axios 的 withCredentials 为 true，后端也需设置接收 cookie。如 flask_cors 的 CORS(app,supports_credentials=True)
